@@ -1,1 +1,72 @@
-"use client"\nimport { SiteThemeProvider } from '@/components/sections/ThemeProvider';\nimport CyclopsHero from '@/components/sections/layouts/hero/CyclopsHero';\nimport MinimalAbout from '@/components/sections/layouts/about/MinimalAbout';\nimport SimpleKPIBento from '@/components/bento/SimpleKPIBento';\nimport BentoFAQ from '@/components/sections/layouts/faq/BentoFAQ';\nimport MinimalNavbar from '@/components/navigation/MinimalNavbar';\nimport ContactForm from '@/components/ContactForm';\nimport { useState } from 'react';\nimport Image from 'next/image';\n\nconst contactForm = () => {\n  const [formData, setFormData] = useState({ name: '', email: '', message: '' });\n  const handleSubmit = (e) => {\n    e.preventDefault();\n    // handle form submission\n  };\n  return (\n    <form onSubmit={handleSubmit} className="flex flex-col gap-4">\n      <input type="text" name="name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="Your Name" className="p-2 border border-gray rounded" required/>\n      <input type="email" name="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="Your Email" className="p-2 border border-gray rounded" required/>\n      <textarea name="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder="Your Message" className="p-2 border border-gray rounded" required/>\n      <button type="submit" className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Send Message</button>\n    </form>\n  );\n};\n\nexport default function Home() {\n  return (\n    <SiteThemeProvider theme={{ styleVariant: 'funAndTrendy', colorTemplate: 1, textAnimation: 'slide' }}>\n      <MinimalNavbar\n        logoSrc="/images/logo.svg"\n        logoWidth={100}\n        logoHeight={40}\n        buttonText="Contact"\n        onButtonClick={() => window.scrollTo({ top: document.getElementById('cta').offsetTop, behavior: 'smooth' })}  \n        className="bg-white shadow"\n      />\n      <section id="hero" className="bg-white py-20">\n        <CyclopsHero\n          title="Welcome to Your Brand"\n          subtitle="Your trusted partner in building amazing solutions."\n          primaryButtonText="Get Started"\n          onPrimaryButtonClick={() => window.scrollTo({ top: document.getElementById('cta').offsetTop, behavior: 'smooth' })}\n          secondaryButtonText="Learn More"\n          onSecondaryButtonClick={() => window.scrollTo({ top: document.getElementById('about').offsetTop, behavior: 'smooth' })}\n        />\n      </section>\n      <section id="about" className="bg-f8fbff py-20">\n        <MinimalAbout description="At Your Brand, we believe in delivering results that not only meet but exceed expectations. Our team of experienced professionals is dedicated to providing you with the best service possible." />\n      </section>\n      <section id="services" className="bg-gradient-to-b from-f8fbff to-white py-20">\n        <SimpleKPIBento\n          items={[{ value: 'Amazing Feature 1', description: 'Short description of feature 1' }, { value: 'Amazing Feature 2', description: 'Short description of feature 2' }, { value: 'Amazing Feature 3', description: 'Short description of feature 3' }]}\n          className="max-w-7xl mx-auto"\n          gridClassName="grid grid-cols-1 md:grid-cols-3 gap-6"\n          itemClassName="p-4 border border-gray-300 rounded-lg"\n          valueClassName="font-bold text-xl"\n          descriptionClassName="text-gray-700"\n        />\n      </section>\n      <section id="terms" className="bg-white py-20">\n        <BentoFAQ items={[{ title: 'Terms of Service', content: 'Brief summary of the terms of service.\n          Click to read the full text.' }]} />\n      </section>\n      <section id="privacy" className="bg-white py-20">\n        <BentoFAQ items={[{ title: 'Privacy Policy', content: 'Brief summary of the privacy policy.\n          Click to read the full text.' }]} />\n      </section>\n      <section id="cta" className="bg-f5f8ff py-20">\n        <h2 className="text-2xl font-bold mb-4">Get in Touch with Us</h2>\n        <contactForm />\n      </section>\n    </SiteThemeProvider>\n  );\n}
+"use client"
+import { SiteThemeProvider } from '@/components/sections/ThemeProvider';
+import CyclopsHero from '@/components/sections/layouts/hero/CyclopsHero';
+import MinimalAbout from '@/components/sections/layouts/about/MinimalAbout';
+import SimpleKPIBento from '@/components/bento/SimpleKPIBento';
+import BentoFAQ from '@/components/sections/layouts/faq/BentoFAQ';
+import MinimalNavbar from '@/components/navigation/MinimalNavbar';
+import { useState } from 'react';
+
+const contactForm = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // handle form submission
+  };
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <input type="text" name="name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="Your Name" className="p-2 border border-gray rounded" required/>
+      <input type="email" name="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="Your Email" className="p-2 border border-gray rounded" required/>
+      <textarea name="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder="Your Message" className="p-2 border border-gray rounded" required/>
+      <button type="submit" className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Send Message</button>
+    </form>
+  );
+};
+
+export default function Home() {
+  return (
+    <SiteThemeProvider theme={{ styleVariant: 'funAndTrendy', colorTemplate: 1, textAnimation: 'slide' }}>
+      <MinimalNavbar
+        logoSrc="/images/logo.svg"
+        logoWidth={100}
+        logoHeight={40}
+        buttonText="Contact"
+        onButtonClick={() => window.scrollTo({ top: document.getElementById('cta').offsetTop, behavior: 'smooth' })}  
+        className="bg-white shadow"
+      />
+      <section id="hero" className="bg-white py-20">
+        <CyclopsHero
+          title="Welcome to Your Brand"
+          subtitle="Your trusted partner in building amazing solutions."
+          primaryButtonText="Get Started"
+          onPrimaryButtonClick={() => window.scrollTo({ top: document.getElementById('cta').offsetTop, behavior: 'smooth' })}
+          secondaryButtonText="Learn More"
+          onSecondaryButtonClick={() => window.scrollTo({ top: document.getElementById('about').offsetTop, behavior: 'smooth' })}
+        />
+      </section>
+      <section id="about" className="bg-f8fbff py-20">
+        <MinimalAbout description="At Your Brand, we believe in delivering results that not only meet but exceed expectations. Our team of experienced professionals is dedicated to providing you with the best service possible." />
+      </section>
+      <section id="services" className="bg-gradient-to-b from-f8fbff to-white py-20">
+        <SimpleKPIBento
+          items={[{ value: 'Amazing Feature 1', description: 'Short description of feature 1' }, { value: 'Amazing Feature 2', description: 'Short description of feature 2' }, { value: 'Amazing Feature 3', description: 'Short description of feature 3' }]}
+          className="max-w-7xl mx-auto"
+          gridClassName="grid grid-cols-1 md:grid-cols-3 gap-6"
+          itemClassName="p-4 border border-gray-300 rounded-lg"
+          valueClassName="font-bold text-xl"
+          descriptionClassName="text-gray-700"
+        />
+      </section>
+      <section id="terms" className="bg-white py-20">
+        <BentoFAQ items={[{ title: 'Terms of Service', content: 'Brief summary of the terms of service. Click to read the full text.' }]} />
+      </section>
+      <section id="privacy" className="bg-white py-20">
+        <BentoFAQ items={[{ title: 'Privacy Policy', content: 'Brief summary of the privacy policy. Click to read the full text.' }]} />
+      </section>
+      <section id="cta" className="bg-f5f8ff py-20">
+        <h2 className="text-2xl font-bold mb-4">Get in Touch with Us</h2>
+        <contactForm />
+      </section>
+    </SiteThemeProvider>
+  );
+}
