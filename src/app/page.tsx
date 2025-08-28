@@ -5,23 +5,6 @@ import MinimalAbout from '@/components/sections/layouts/about/MinimalAbout';
 import SimpleKPIBento from '@/components/bento/SimpleKPIBento';
 import BentoFAQ from '@/components/sections/layouts/faq/BentoFAQ';
 import MinimalNavbar from '@/components/navigation/MinimalNavbar';
-import { useState } from 'react';
-
-const contactForm = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // handle form submission
-  };
-  return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <input type="text" name="name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="Your Name" className="p-2 border border-gray rounded" required/>
-      <input type="email" name="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="Your Email" className="p-2 border border-gray rounded" required/>
-      <textarea name="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder="Your Message" className="p-2 border border-gray rounded" required/>
-      <button type="submit" className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Send Message</button>
-    </form>
-  );
-};
 
 export default function Home() {
   return (
@@ -31,7 +14,7 @@ export default function Home() {
         logoWidth={100}
         logoHeight={40}
         buttonText="Contact"
-        onButtonClick={() => window.scrollTo({ top: document.getElementById('cta').offsetTop, behavior: 'smooth' })}  
+        onButtonClick={() => window.scrollTo({ top: document.getElementById('cta').offsetTop, behavior: 'smooth' })}
         className="bg-white shadow"
       />
       <section id="hero" className="bg-white py-20">
@@ -49,7 +32,11 @@ export default function Home() {
       </section>
       <section id="services" className="bg-gradient-to-b from-f8fbff to-white py-20">
         <SimpleKPIBento
-          items={[{ value: 'Amazing Feature 1', description: 'Short description of feature 1' }, { value: 'Amazing Feature 2', description: 'Short description of feature 2' }, { value: 'Amazing Feature 3', description: 'Short description of feature 3' }]}
+          items={[
+            { value: 'Amazing Feature 1', description: 'Short description of feature 1' },
+            { value: 'Amazing Feature 2', description: 'Short description of feature 2' },
+            { value: 'Amazing Feature 3', description: 'Short description of feature 3' }
+          ]}
           className="max-w-7xl mx-auto"
           gridClassName="grid grid-cols-1 md:grid-cols-3 gap-6"
           itemClassName="p-4 border border-gray-300 rounded-lg"
@@ -65,7 +52,12 @@ export default function Home() {
       </section>
       <section id="cta" className="bg-f5f8ff py-20">
         <h2 className="text-2xl font-bold mb-4">Get in Touch with Us</h2>
-        <contactForm />
+        <form onSubmit={e => e.preventDefault()} className="flex flex-col gap-4">
+          <input type="text" name="name" placeholder="Your Name" className="p-2 border border-gray rounded" required/>
+          <input type="email" name="email" placeholder="Your Email" className="p-2 border border-gray rounded" required/>
+          <textarea name="message" placeholder="Your Message" className="p-2 border border-gray rounded" required/>
+          <button type="submit" className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Send Message</button>
+        </form>
       </section>
     </SiteThemeProvider>
   );
