@@ -14,7 +14,12 @@ export default function Home() {
         logoWidth={100}
         logoHeight={40}
         buttonText="Contact"
-        onButtonClick={() => window.scrollTo({ top: document.getElementById('cta').offsetTop, behavior: 'smooth' })}
+        onButtonClick={() => {
+          const element = document.getElementById('cta');
+          if (element) {
+            window.scrollTo({ top: element.offsetTop, behavior: 'smooth' });
+          }
+        }}
         className="bg-white shadow"
       />
       <section id="hero" className="bg-white py-20">
@@ -22,9 +27,19 @@ export default function Home() {
           title="Welcome to Your Brand"
           subtitle="Your trusted partner in building amazing solutions."
           primaryButtonText="Get Started"
-          onPrimaryButtonClick={() => window.scrollTo({ top: document.getElementById('cta').offsetTop, behavior: 'smooth' })}
+          onPrimaryButtonClick={() => {
+            const element = document.getElementById('cta');
+            if (element) {
+              window.scrollTo({ top: element.offsetTop, behavior: 'smooth' });
+            }
+          }}
           secondaryButtonText="Learn More"
-          onSecondaryButtonClick={() => window.scrollTo({ top: document.getElementById('about').offsetTop, behavior: 'smooth' })}
+          onSecondaryButtonClick={() => {
+            const element = document.getElementById('about');
+            if (element) {
+              window.scrollTo({ top: element.offsetTop, behavior: 'smooth' });
+            }
+          }}
         />
       </section>
       <section id="about" className="bg-f8fbff py-20">
